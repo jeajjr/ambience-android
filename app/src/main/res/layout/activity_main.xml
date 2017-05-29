@@ -8,61 +8,59 @@
     tools:context="tk.jealmas.ambience.ActivityMain"
     android:orientation="vertical"
     android:padding="16sp"
+    android:background="#2d2e3f"
     >
 
-
-    <SeekBar
+    <com.flask.colorpicker.ColorPickerView
+        android:layout_marginTop="24sp"
+        android:id="@+id/color_picker_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/barRed"
-        android:layout_marginTop="16sp"
-        android:max="1023"
+        app:alphaSlider="false"
+        app:density="12"
+        app:lightnessSlider="true"
+        app:wheelType="FLOWER"
         />
 
-    <SeekBar
+    <com.flask.colorpicker.slider.LightnessSlider
+        android:id="@+id/lightness_slider"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/barGreen"
-        android:layout_marginTop="16sp"
-        android:max="1023"
+        android:layout_height="48dp"
         />
-
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/barBlue"
-        android:layout_marginTop="16sp"
-        android:max="1023"
-        />
-
-
-    <EditText
-        android:layout_marginTop="16sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8sp"
-        android:hint="192.168.0.10"
-        android:text="192.168.0.10"
-        android:id="@+id/textIp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:id="@+id/buttonCommand"
-        android:text="Enviar Comando"
+        android:text="SET"
+        android:textColor="#040404"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:layout_marginTop="16sp"
         />
-    <TextView
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/textCommand"
+        android:layout_marginTop="16sp"
+        >
+
+
+    <ProgressBar
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBar"
         />
-    </LinearLayout>
+
+    <ImageView
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_centerInParent="true"
+        android:id="@+id/status"
+        android:src="@drawable/success"
+        />
+    </RelativeLayout>
+
+
 </LinearLayout>

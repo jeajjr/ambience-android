@@ -13,7 +13,7 @@ public class ConfigTransmitter extends AsyncTask<Void, Void, Boolean> {
 
     private static String IP = "192.168.0.10";
     private static Integer PORT = 45225;
-    private static Integer TIMEOUT = 5;
+    private static Integer TIMEOUT = 5000; //ms
 
     private ConfigTransmitterListener configTransmitter;
     private int red;

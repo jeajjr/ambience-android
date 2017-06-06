@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:alphaSlider="false"
-        app:density="12"
+        app:density="4"
         app:lightnessSlider="true"
         app:wheelType="FLOWER"
         />

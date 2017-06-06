@@ -3,6 +3,7 @@ package tk.jealmas.ambience;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,42 @@ public class ActivityMain extends Activity {
     private int green = 0;
     private int blue = 0;
 
+    float getAmortizedAlpha(float alpha) {
+        alpha /= 1024;
+        return 1024 * (float) ((Math.exp(2.0 * alpha) - 1.0)/(Math.exp(2.0) - 1.0));
+    }
+
+    void readColorsSendCommand() {
+        int color = cpv.getSelectedColor();
+        red = (int) getAmortizedAlpha(((color & 0xFF0000) >> 16)*4);
+        green = (int) getAmortizedAlpha(((color & 0x00FF00) >> 8)*4);
+        blue = (int) getAmortizedAlpha((color & 0x0000FF)*4);
+
+        Log.d(TAG, "got color " + red + "," + green + "," + blue);
+
+        (new ConfigTransmitter(new ConfigTransmitter.ConfigTransmitterListener() {
+            @Override
+            public void onSuccess() {
+                status.setImageResource(R.drawable.success);
+            }
+
+            @Override
+            public void onFail() {
+                status.setImageResource(R.drawable.fail);
+            }
+
+            @Override
+            public void onStart() {
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFinish() {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        },red, green, blue)).execute();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,36 +83,29 @@ public class ActivityMain extends Activity {
         commandButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                readColorsSendCommand();
 
-                int color = cpv.getSelectedColor();
-                red = (int) (((color & 0xFF0000) >> 16)*4*ls.getAlpha());
-                green = (int) (((color & 0x00FF00) >> 8)*4*ls.getAlpha());
-                blue = (int) ((color & 0x0000FF)*4*ls.getAlpha());
-
-                Log.d(TAG, "color " + color);
-
-                (new ConfigTransmitter(new ConfigTransmitter.ConfigTransmitterListener() {
-                    @Override
-                    public void onSuccess() {
-                        status.setImageResource(R.drawable.success);
-                    }
-
-                    @Override
-                    public void onFail() {
-                        status.setImageResource(R.drawable.fail);
-                    }
-
-                    @Override
-                    public void onStart() {
-                        progressBar.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-                },red, green, blue)).execute();
             }
         });
+        /*
+        cpv.setOnsetOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readColorsSendCommand();
+            }
+        });
+
+        ls.setOnGenericMotionListener(new View.OnGenericMotionListener() {
+            @Override
+            public boolean onGenericMotion(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_HOVER_EXIT ||
+                        event.getAction() == MotionEvent.ACTION_UP) {
+                    readColorsSendCommand();
+                    return true;
+                }
+                return false;
+            }
+        });
+        */
     }
 }

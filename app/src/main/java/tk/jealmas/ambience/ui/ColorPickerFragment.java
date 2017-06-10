@@ -1,7 +1,6 @@
 package tk.jealmas.ambience.ui;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -78,7 +77,6 @@ public class ColorPickerFragment extends Fragment {
         }
 
     }
-
 
     public ColorPickerFragment() {
         // Required empty public constructor

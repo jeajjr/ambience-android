@@ -8,9 +8,8 @@
     tools:context="tk.jealmas.ambience.ui.ActivityMain"
     android:orientation="vertical"
     android:padding="16sp"
-    android:background="#2d2e3f"
+    android:background="@color/background"
     android:id="@+id/container"
     >
-
 
 </FrameLayout>

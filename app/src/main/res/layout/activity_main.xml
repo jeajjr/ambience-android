@@ -1,66 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tk.jealmas.ambience.ActivityMain"
+    tools:context="tk.jealmas.ambience.ui.ActivityMain"
     android:orientation="vertical"
     android:padding="16sp"
     android:background="#2d2e3f"
+    android:id="@+id/container"
     >
 
-    <com.flask.colorpicker.ColorPickerView
-        android:layout_marginTop="24sp"
-        android:id="@+id/color_picker_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:alphaSlider="false"
-        app:density="4"
-        app:lightnessSlider="true"
-        app:wheelType="FLOWER"
-        />
 
-    <com.flask.colorpicker.slider.LightnessSlider
-        android:id="@+id/lightness_slider"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        />
-
-    <Button
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonCommand"
-        android:text="SET"
-        android:textColor="#040404"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/button"
-        android:layout_marginTop="16sp"
-        />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
-        >
-
-
-    <ProgressBar
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:layout_centerInParent="true"
-        android:id="@+id/progressBar"
-        />
-
-    <ImageView
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:layout_centerInParent="true"
-        android:id="@+id/status"
-        android:src="@drawable/success"
-        />
-    </RelativeLayout>
-
-
-</LinearLayout>
+</FrameLayout>

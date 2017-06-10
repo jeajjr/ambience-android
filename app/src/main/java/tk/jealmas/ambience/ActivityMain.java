@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.OnColorChangedListener;
 import com.flask.colorpicker.slider.LightnessSlider;
 
 import tk.jealmas.ambience.data.ConfigTransmitter;
@@ -31,9 +32,11 @@ public class ActivityMain extends Activity {
     private int green = 0;
     private int blue = 0;
 
+    private double amortizationCoefficient = 5.0;
+
     float getAmortizedAlpha(float alpha) {
         alpha /= 1024;
-        return 1024 * (float) ((Math.exp(2.0 * alpha) - 1.0)/(Math.exp(2.0) - 1.0));
+        return 1024 * (float) ((Math.exp(amortizationCoefficient * alpha) - 1.0)/(Math.exp(amortizationCoefficient) - 1.0));
     }
 
     void readColorsSendCommand() {
@@ -75,10 +78,18 @@ public class ActivityMain extends Activity {
         cpv = (ColorPickerView) findViewById(R.id.color_picker_view);
         ls = (LightnessSlider) findViewById(R.id.lightness_slider);
         cpv.setLightnessSlider(ls);
+        ls.setColorPicker(cpv);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         status = (ImageView) findViewById(R.id.status);
         commandButton = (Button) findViewById(R.id.buttonCommand);
+
+        cpv.addOnColorChangedListener(new OnColorChangedListener() {
+            @Override
+            public void onColorChanged(int i) {
+                readColorsSendCommand();
+            }
+        });
 
         commandButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,25 +98,5 @@ public class ActivityMain extends Activity {
 
             }
         });
-        /*
-        cpv.setOnsetOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                readColorsSendCommand();
-            }
-        });
-
-        ls.setOnGenericMotionListener(new View.OnGenericMotionListener() {
-            @Override
-            public boolean onGenericMotion(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_HOVER_EXIT ||
-                        event.getAction() == MotionEvent.ACTION_UP) {
-                    readColorsSendCommand();
-                    return true;
-                }
-                return false;
-            }
-        });
-        */
     }
 }

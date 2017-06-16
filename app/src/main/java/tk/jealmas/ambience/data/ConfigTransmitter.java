@@ -2,11 +2,15 @@ package tk.jealmas.ambience.data;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 public class ConfigTransmitter extends AsyncTask<Void, Void, Boolean> {
     private static final String TAG = ConfigTransmitter.class.getName();
@@ -36,15 +40,18 @@ public class ConfigTransmitter extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     protected void onPreExecute() {
-        configTransmitter.onStart();
+        if (configTransmitter != null)
+            configTransmitter.onStart();
     }
 
     @Override
     protected Boolean doInBackground(Void... params) {
         try {
-            Socket socket = new Socket(IP, PORT);
-
+            InetSocketAddress address = new InetSocketAddress(IP, PORT);
+            Socket socket = new Socket();
             socket.setSoTimeout(TIMEOUT);
+            socket.connect(address);
+
             DataOutputStream dOut = new DataOutputStream(socket.getOutputStream());
 
             Log.d(TAG, "got connection, sending " + red + "," + green + "," + blue);
@@ -75,13 +82,16 @@ public class ConfigTransmitter extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     protected void onPostExecute(Boolean aBoolean) {
-        configTransmitter.onFinish();
+        if (configTransmitter != null) {
+            configTransmitter.onFinish();
 
-        if (aBoolean)
-            configTransmitter.onSuccess();
+            if (aBoolean)
+                configTransmitter.onSuccess();
+            else
+                configTransmitter.onFail();
+        }
         else
-            configTransmitter.onFail();
-
+            Log.d(TAG, "received null listener");
     }
 
 }

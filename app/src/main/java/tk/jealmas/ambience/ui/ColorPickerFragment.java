@@ -25,7 +25,6 @@ public class ColorPickerFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     // UI Components
-    private Button commandButton;
     private ProgressBar progressBar;
     private ColorPickerView cpv;
     private LightnessSlider ls;
@@ -56,22 +55,28 @@ public class ColorPickerFragment extends Fragment {
             mListener.onColorPicked(red, green, blue, new ConfigTransmitter.ConfigTransmitterListener() {
                 @Override
                 public void onSuccess() {
+                    Log.d(TAG, "Success");
                     status.setImageResource(R.drawable.success);
                 }
 
                 @Override
                 public void onFail() {
+                    Log.d(TAG, "Fail");
                     status.setImageResource(R.drawable.fail);
                 }
 
                 @Override
                 public void onStart() {
+                    Log.d(TAG, "Start");
                     progressBar.setVisibility(View.VISIBLE);
+                    status.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
                 public void onFinish() {
+                    Log.d(TAG, "Finish");
                     progressBar.setVisibility(View.INVISIBLE);
+                    status.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -95,18 +100,11 @@ public class ColorPickerFragment extends Fragment {
 
         progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         status = (ImageView) v.findViewById(R.id.status);
-        commandButton = (Button) v.findViewById(R.id.buttonCommand);
+        progressBar.setVisibility(View.INVISIBLE);
 
         cpv.addOnColorChangedListener(new OnColorChangedListener() {
             @Override
             public void onColorChanged(int i) {
-                readColorsSendCommand();
-            }
-        });
-
-        commandButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 readColorsSendCommand();
             }
         });

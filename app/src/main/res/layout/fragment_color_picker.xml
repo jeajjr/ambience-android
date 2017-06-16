@@ -8,41 +8,38 @@
     android:padding="16sp"
     android:background="#2d2e3f">
 
-    <com.flask.colorpicker.ColorPickerView
-        android:layout_marginTop="24sp"
-        android:id="@+id/color_picker_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:alphaSlider="false"
-        app:density="4"
-        app:lightnessSlider="true"
-        app:wheelType="CIRCLE"
-        />
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        >
 
-    <com.flask.colorpicker.slider.LightnessSlider
-        android:id="@+id/lightness_slider"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        />
 
-    <Button
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonCommand"
-        android:text="SET"
-        android:textColor="#040404"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/button"
-        android:layout_marginTop="16sp"
-        />
+        <com.flask.colorpicker.ColorPickerView
+            android:id="@+id/color_picker_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alphaSlider="false"
+            app:density="5"
+            app:lightnessSlider="true"
+            app:wheelType="FLOWER"
+            android:layout_centerVertical="true"
+            />
+
+        <com.flask.colorpicker.slider.LightnessSlider
+            android:id="@+id/lightness_slider"
+            android:layout_width="match_parent"
+            android:layout_below="@id/color_picker_view"
+            android:layout_height="48dp"
+            />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
+        android:layout_weight="1"
         >
-
-
         <ProgressBar
             android:layout_width="50sp"
             android:layout_height="50sp"

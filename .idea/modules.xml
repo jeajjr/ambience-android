@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/QuadFlask.colorpicker.0.0.13/QuadFlask.colorpicker.0.0.13.iml" filepath="$PROJECT_DIR$/QuadFlask.colorpicker.0.0.13/QuadFlask.colorpicker.0.0.13.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ambience-android.iml" filepath="$PROJECT_DIR$/ambience-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ambience.iml" filepath="$PROJECT_DIR$/.idea/modules/Ambience.iml" group="Ambience" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Ambience/app" />
     </modules>
   </component>
 </project>

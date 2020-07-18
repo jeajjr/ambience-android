@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/QuadFlask/colorpicker/releases
+HostUrl=https://github-production-release-asset-2e65be.s3.amazonaws.com/32624384/c3def300-01b8-11ea-8c48-44358381fe08?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20200718%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200718T184841Z&X-Amz-Expires=300&X-Amz-Signature=93c0c31b21f5af1a5ba378ef68ecc744c03dbe74d2e9f9b04e514b5128cfdc17&X-Amz-SignedHeaders=host&actor_id=8671253&repo_id=32624384&response-content-disposition=attachment%3B%20filename%3Dlibrary-release.aar&response-content-type=application%2Foctet-stream

@@ -1,1 +1,2 @@
-include ':app', ':QuadFlask.colorpicker.0.0.13'
+include ':app'
+rootProject.name = "Ambience"
